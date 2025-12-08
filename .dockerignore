@@ -1,0 +1,47 @@
+# Git
+.git/
+.gitignore
+.github/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Логи
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Переменные окружения
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Документация
+README.md
+*.md
+
+# Fly.io
+fly.toml
+fly.toml.example
+
