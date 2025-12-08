@@ -75,6 +75,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     welcome_message = """
 🤖 Добро пожаловать в Gainly App!
 
+📱 Чтобы запустить наше мини-приложение нажмите кнопку "Открыть"
+
 📋 Доступные команды:
 /start - Показать информацию о боте и командах
 /feedback - Отправить обратную связь
@@ -224,7 +226,6 @@ async def receive_message(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             f"Отправка обратной связи: пользователь {user_id} (@{update.effective_user.username or 'без_username'}), "
             f"формат: {app_format}, тип: {feedback_type}, получатель: {recipient}"
         )
-        logger.info(f"Содержимое сообщения:\n{feedback_message}")
         await context.bot.send_message(
             chat_id=recipient,
             text=feedback_message
