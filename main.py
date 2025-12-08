@@ -48,6 +48,9 @@ console_handler.setFormatter(logging.Formatter(log_format, date_format))
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
+# Отключение избыточного логирования httpx (HTTP запросы к Telegram API)
+logging.getLogger('httpx').setLevel(logging.WARNING)
+
 # Получение logger для текущего модуля
 logger = logging.getLogger(__name__)
 
@@ -60,10 +63,10 @@ user_data = {}
 # Чтобы узнать свой chat_id, отправьте боту команду /get_chat_id
 # 909844183 - Миша
 RECIPIENTS = {
-    ('android', 'wishes'): 909844183,  #@Yur4Arkhipov
-    ('android', 'features'): 909844183,  #@s0rg1
+    ('android', 'wishes'): 844693564,  #@Yur4Arkhipov
+    ('android', 'features'): 946851965,  #@s0rg1
     ('miniapp', 'wishes'): 909844183,  #@gefeeRu
-    ('miniapp', 'features'): 909844183,  #@s0rg1
+    ('miniapp', 'features'): 946851965,  #@s0rg1
 }
 
 
@@ -221,6 +224,7 @@ async def receive_message(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             f"Отправка обратной связи: пользователь {user_id} (@{update.effective_user.username or 'без_username'}), "
             f"формат: {app_format}, тип: {feedback_type}, получатель: {recipient}"
         )
+        logger.info(f"Содержимое сообщения:\n{feedback_message}")
         await context.bot.send_message(
             chat_id=recipient,
             text=feedback_message
