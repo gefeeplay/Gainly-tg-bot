@@ -1,0 +1,16 @@
+app = "gainly-bot"
+primary_region = "ams"
+
+[build]
+
+[env]
+  # BOT_TOKEN будет установлен через fly secrets set BOT_TOKEN=your_token
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
+
+[processes]
+  app = "python main.py"
+
